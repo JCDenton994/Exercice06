@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Manage Contacts</title>
+    <link rel="stylesheet" href="exercice6.css">
+  </head>
+  <body>
+    <header><h1>Manage Contacts</h1></header>
+    <section><strong>Create contact</strong></section>
+    <form name="contact" autocomplete>
+      <table class="auto-style1">
+          <tr>
+              <td class="auto-style2"><strong>Personal information</strong></td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr>
+              <td class="auto-style2">IDContact</td>
+              <td>
+                  <input id="idcontact" type="text"></td>
+          </tr>
+          <tr>
+              <td class="auto-style2">Last Name</td>
+              <td><input id="name" type="text"></td>
+          </tr>
+          <tr>
+              <td class="auto-style2">First Name</td>
+              <td><input id="pname" type="text"></td>
+          </tr>
+          <tr>
+              <td class="auto-style2">Email Adress</td>
+              <td>
+                  <input id="email" type="text"></td>
+          </tr>
+          <tr>
+              <td class="auto-style2">Phone</td>
+              <td>
+                  <input type="text" id="phone" type="text"><br/>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <button value="" id="btn_create" class="btns">Create contact</button>
+              </td>
+              <td>
+                  <button value="" id="btn_modify" class="btns">Modify contact</button>
+              </td>
+              <td>
+                  <button value="" id="btn_delete" class="btns">Delete contact</button>
+              </td>
+              <td>
+                  <button value="" id="btn_next" class="btns">Next contact</button>
+              </td>
+              <td>
+                  <button value="" id="btn_previous" class="btns">Previous contact</button>
+              </td>
+           </tr>
+      </table>
+      
+      <fieldset>
+      <h2>Contact list</h2>
+      <table align="center"><tr><td>
+      <div id="contactslist">
+        </div></td></tr>
+      </table>
+      </fieldset>
+      </form>
+      
+     <script type="application/dart" src="exercice6.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>
