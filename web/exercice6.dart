@@ -17,25 +17,20 @@ void main(){
   btn_modify.onClick.listen(modify_contact);
   ButtonElement btn_delete = query('#btn_delete');
   btn_delete.onClick.listen(delete_contact);
-  ButtonElement btn_next = query('#btn_next');
-  btn_next.onClick.listen(next_contact);
-  ButtonElement btn_previous = query('#btn_previous');
-  btn_previous.onClick.listen(previous_contact);
 }
 
 display() {
-  String list = '''<table align=center border=1><tr><th>IDcontact</th><th>Name</th><th>First Name</th><th>Email</th><th>Phone</th></tr>''';
+  String list = '''<table align=center border=1><tr><th>IDcontact</th><th>Name</th><th>First Name</th><th>Email</th><th>Phone</th><th>Select</th></tr>''';
   for (var contact in contacts) {
     var alink = '''
     <tr><td>${contact.idcontact}</td>
         <td>${contact.name}</td>
         <td>${contact.pname}</td>
         <td>${contact.email}</td>
-        <td>${contact.phone}</td></tr>'''; 
+        <td>${contact.phone}</td>
+        <td><button id="" type="button" on-click=selecti(${contact.idcontact}>Sel</td></tr>'''; 
     list = '$list ${alink}';
   }
-  var alink = '''</table>''';
-  list = '$list ${alink}';
   document.query('#contactslist').innerHtml = list;
 }
 
@@ -67,19 +62,10 @@ delete_contact(MouseEvent event){
   display();
 }
 
-next_contact(MouseEvent event){
-  var _idcontact = query('#idcontact');
-  //num __idcontact = _idcontact + 1;
-  contacts.find(2);
-  query('#name').text=contacts.name;
-  query('pname').text=contacts.pname;
-  query('email').text=contacts.email;
-  query('phone').text=contacts.phone;
+selecti(MouseEvent event){
+  query('#idcontact').text= contacts.idcontact;
+  query('#name').text= contacts.name;
+  query('#pname').text=contacts.pname;
+  query('#email').text=contacts.email;
+  query('#phone').text=contacts.phone;
 }
-
-previous_contact(MouseEvent event){
-  var _idcontact = query('#idcontact');
-  var __idcontact = _idcontact - 1;
-  var contact = contacts.elementAt(__idcontact);
-}
-
