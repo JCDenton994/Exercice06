@@ -275,6 +275,17 @@ PlainJavaScriptObject: {"": "JavaScriptObject;"},
 UnknownJavaScriptObject: {"": "JavaScriptObject;"},
 
 JSArray: {"": "List/Interceptor;",
+  remove$1: function(receiver, element) {
+    var i;
+    if (!!receiver.fixed$length)
+      H.throwExpression(new P.UnsupportedError("remove"));
+    for (i = 0; i < receiver.length; ++i)
+      if (J.$eq(receiver[i], element)) {
+        receiver.splice(i, 1);
+        return true;
+      }
+    return false;
+  },
   forEach$1: function(receiver, f) {
     return H.IterableMixinWorkaround_forEach(receiver, f);
   },
@@ -5983,7 +5994,7 @@ display: function() {
   J.set$innerHtml$x(document.querySelector("#contactslist"), list);
 },
 
-create_contact: function(e) {
+create_contact: function($event) {
   var contact = new T.Contact(null, null, null, null, null);
   contact.idcontact = $.get$contacts().length + 1;
   contact.name = document.querySelector("#name").textContent;
@@ -5994,16 +6005,43 @@ create_contact: function(e) {
   T.display();
 },
 
-modify_contact: function(e) {
+modify_contact: function($event) {
+  var contact = new T.Contact(null, null, null, null, null);
+  contact.idcontact = document.querySelector("#idcontact");
+  contact.name = document.querySelector("#name").textContent;
+  contact.pname = document.querySelector("#pname").textContent;
+  contact.email = document.querySelector("#email").textContent;
+  contact.phone = document.querySelector("#phone").textContent;
+  $.get$contacts().update$1(contact);
+  T.display();
 },
 
-delete_contact: function(e) {
+delete_contact: function($event) {
+  var t1, contact;
+  t1 = $.get$contacts();
+  if (2 >= t1.length)
+    throw H.ioore(t1, 2);
+  contact = t1[2];
+  J.remove$1$ax($.get$contacts(), contact);
+  T.display();
 },
 
-next_contact: function(e) {
+next_contact: function($event) {
+  var _idcontact, __idcontact, t1;
+  _idcontact = document.querySelector("#idcontact");
+  __idcontact = _idcontact.$add(_idcontact, 1);
+  t1 = $.get$contacts();
+  if (__idcontact >>> 0 !== __idcontact || __idcontact >= t1.length)
+    throw H.ioore(t1, __idcontact);
 },
 
-previous_contact: function(e) {
+previous_contact: function($event) {
+  var _idcontact, __idcontact, t1;
+  _idcontact = document.querySelector("#idcontact");
+  __idcontact = _idcontact.$sub(_idcontact, 1);
+  t1 = $.get$contacts();
+  if (__idcontact >>> 0 !== __idcontact || __idcontact >= t1.length)
+    throw H.ioore(t1, __idcontact);
 },
 
 Contact: {"": "Object;idcontact<,name>,pname<,email<,phone<"}},
@@ -6050,25 +6088,23 @@ W.Element.$isObject = true;
 P.Object.$isObject = true;
 P.StackTrace.$isStackTrace = true;
 P.StackTrace.$isObject = true;
-W.Event.$isEvent = true;
-W.Event.$isObject = true;
 J.JSArray.$isObject = true;
-W._Html5NodeValidator.$is_Html5NodeValidator = true;
 W._Html5NodeValidator.$isNodeValidator = true;
 W._Html5NodeValidator.$isObject = true;
+W._Html5NodeValidator.$is_Html5NodeValidator = true;
 J.JSNumber.$isObject = true;
 P.Symbol.$isSymbol = true;
 P.Symbol.$isObject = true;
-J.JSInt.$isObject = true;
 J.JSInt.$isint = true;
-J.JSString.$isString = true;
+J.JSInt.$isObject = true;
 J.JSString.$isObject = true;
+J.JSString.$isString = true;
 P.Future.$isFuture = true;
 P.Future.$isObject = true;
 P._EventSink.$is_EventSink = true;
 P._EventSink.$isObject = true;
 P.ReceivePort.$isObject = true;
-W.MouseEvent.$isEvent = true;
+W.MouseEvent.$isMouseEvent = true;
 W.MouseEvent.$isObject = true;
 W.NodeValidator.$isNodeValidator = true;
 W.NodeValidator.$isObject = true;
@@ -6259,6 +6295,9 @@ J.get$value$x = function(receiver) {
 };
 J.remove$0$ax = function(receiver) {
   return J.getInterceptor$ax(receiver).remove$0(receiver);
+};
+J.remove$1$ax = function(receiver, a0) {
+  return J.getInterceptor$ax(receiver).remove$1(receiver, a0);
 };
 J.send$2$x = function(receiver, a0, a1) {
   return J.getInterceptor$x(receiver).send$2(receiver, a0, a1);
