@@ -18,7 +18,7 @@
           <tr>
               <td class="auto-style2">IDContact</td>
               <td>
-                  <input id="idcontact" type="text" STYLE="background-color: #C0C0C0"readonly></td>
+                  <input id="idcontact" type="text"></td>
           </tr>
           <tr>
               <td class="auto-style2">Last Name</td>
@@ -43,21 +43,20 @@
               <td>
                   <button value="" id="btn_create" class="btns">Create contact</button>
               </td>
-              <td>
-                  <button value="" id="btn_modify" class="btns">Modify contact</button>
-              </td>
-              <td>
-                  <button value="" id="btn_delete" class="btns">Delete contact</button>
-              </td>
            </tr>
       </table>
       
       <fieldset>
       <h2>Contact list</h2>
-      <table align="center"><tr><td>
-      <div id="contactslist">
-        </div></td></tr>
-      </table>
+       <table id="contactlist">
+         <tr>
+           <th>IDContact</th>
+           <th>Name</th>
+           <th>First Name</th>
+           <th>Email</th>
+           <th>Phone</th>
+         </tr>
+       </table>
       </fieldset>
       </form>
       
